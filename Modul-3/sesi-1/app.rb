@@ -32,3 +32,28 @@ get '/items/:id/detail' do
         item: item
     }
 end
+
+post '/items/delete/:id' do
+    id = params["id"]
+    delete_item(id)
+    redirect '/'
+end
+
+get '/items/edit/:id' do
+    id = params["id"]
+    categories = get_all_categories
+    item = get_item(id)[0]
+    erb :edititem, locals:{
+        item: item,
+        categories: categories
+    }
+end
+
+post '/items/update/:id' do
+    id = params['id']
+    name = params['name']
+    category = params['category']
+    price = params['price']
+    update_item(id, name, price, category)
+    redirect '/'
+end
