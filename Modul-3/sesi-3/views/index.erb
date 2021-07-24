@@ -1,0 +1,23 @@
+<h1>Items</h1>
+
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+    </tr>
+    <%no=1%>
+    <% items.each do |item| %>
+        <tr>
+            <td><%=no%></td>
+            <td><a href='items/<%=item.id%>/detail'><%=item.name%></a></td>
+            <td><%=item.price%></td>
+            <td><%=item.category.name%></td>
+            <td><form action="items/delete/<%=item.id%>" method="post"><td><a href="items/edit/<%=item.id%>"><button type="button">Edit</button></a></td><td><button type=submit >Delete</button></td></form></td>
+        </tr>
+        <%no+=1%>
+    <% end %>
+</table>
+
+<a href='items/new'><button>+ Add Item</button></a>

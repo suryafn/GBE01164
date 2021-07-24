@@ -1,0 +1,16 @@
+<h1>Create item</h1>
+
+<form action="/items/update/<%=item.id%>" method="post">
+  <input type="text" name="name" placeholder="Item name" value="<%=item.name%>">
+  <input type="number" name="price" placeholder="Item price" value="<%=item.price%>">
+  <select name="category">
+    <% categories.each do |category| %>
+        <% if item.category.name.eql? category.name %>
+            <option value="<%= category.id %>" selected='selected'><%= category.name %></option>
+        <% else %>
+          <option value="'<%= category.id %>'"><%= category.name %></option>
+        <% end %>
+    <% end %>
+  </select>
+  <button type=submit>update</button>
+</form>
