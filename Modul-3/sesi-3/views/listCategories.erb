@@ -1,0 +1,19 @@
+<h1>All Categories</h1>
+
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Category</th>
+    </tr>
+    <%no=1%>
+    <% categories.each do |item| %>
+        <tr>
+            <td><%=no%></td>
+            <td><%=item.name%></td>
+            <td><form action="categories/delete/<%=item.id%>" method="post"><td><a href="categories/edit/<%=item.id%>"><button type="button">Edit</button></a></td><td><button type=submit >Delete</button></td></form></td>
+        </tr>
+        <%no+=1%>
+    <% end %>
+</table>
+
+<a href='categories/new'><button>+ Add Category</button></a>
