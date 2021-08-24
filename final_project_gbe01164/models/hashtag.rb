@@ -9,6 +9,7 @@ class Hashtag
     end
 
     def self.split_hashtag(text)
+        text = text.downcase
         hashtags = Array.new
         if text.include? "#"
             split_hashtag = text.split('#')
@@ -21,8 +22,19 @@ class Hashtag
         hashtags
     end
 
-    def self.save()
-        
+    def save
+        client = create_db_client
+        if exist?
+            client.query("update hashtag set last_used='#{@last_used}' where hashtag_name = '#{@hashtag_name}' ")
+        else
+            client.query("insert into hashtag(hashtag_name, last_used) values('#{@hashtag_name}', '#{last_used}')")
+        end
+    end
+
+    def exist?
+        client = create_db_client
+        raw_data = client.query("select * from hashtag where hashtag_name='#{@hashtag_name}'")
+        raw_data.each[0] != nil
     end
 
     def valid?
