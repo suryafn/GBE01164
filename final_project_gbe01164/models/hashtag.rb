@@ -26,8 +26,11 @@ class Hashtag
         client = create_db_client
         if exist?
             client.query("update hashtag set last_used='#{@last_used}' where hashtag_name = '#{@hashtag_name}' ")
+            rawData=client.query("select * from hashtag where hashtag_name = '#{@hashtag_name}'")
+            return rawData.each[0]["id"]
         else
             client.query("insert into hashtag(hashtag_name, last_used) values('#{@hashtag_name}', '#{last_used}')")
+            return client.last_id
         end
     end
 

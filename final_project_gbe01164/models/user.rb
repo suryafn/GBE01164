@@ -11,12 +11,12 @@ class User
     end
 
     def save
-        return false if !valid? || exist?
+        return 422 if !valid? || exist?
 
         client = create_db_client
         client.query("Insert into user(username, password, email, bio, display_name) values
         ('#{username}','#{password}', '#{email}', '#{bio}', '#{display_name}')")
-        true
+        200
     end
 
     def exist?
