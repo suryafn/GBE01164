@@ -20,6 +20,4 @@ class Post_controller
 
     end
 end
-post = Post_controller.new
 
-puts post.save({text: 'ini p#ostingan #GGwp', user_id: 12})

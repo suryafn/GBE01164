@@ -20,5 +20,3 @@ class User_controller
 
     end
 end
-user = User_controller.new
-puts user.save({username: 'umarBakri', password: 'jokokok', email: 'aa@gmail.com', display_name: 'Umar Bakri'})
